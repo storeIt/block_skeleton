@@ -1,7 +1,6 @@
+import 'package:exception/exception.dart';
 import 'package:fpdart/fpdart.dart';
-
-import '../../../../core/exception/failure.dart';
-import '../../domain/entity/number_ent.dart';
+import '../entity/number_ent.dart';
 
 abstract interface class NumberRepositoryI {
   Future<Either<Failure, NumberEntity>> getConcreteNumber(int number);

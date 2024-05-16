@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class Params extends Equatable {
-  final dynamic params;
-
   Params({this.params});
+
+  final dynamic params;
 
   @override
   List<Object?> get props => [params];

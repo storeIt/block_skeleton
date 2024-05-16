@@ -1,13 +1,13 @@
-import '../../model/number_trivia_model.dart';
+import '../../model/number_model.dart';
 
-abstract interface class NumberTriviaRemoteDataI {
+abstract interface class NumberRemoteDataI {
   /// Calls the http://numbersapi.com/{number} endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<NumberTriviaModel> getConcreteNumberTrivia(int number);
+  Future<NumberModel> getConcreteNumber(int number);
 
   /// Calls the http://numbersapi.com/random
   ///
   /// Throws a [ServerException] for all error codes
-  Future<NumberTriviaModel> getRandomNumberTrivia();
+  Future<NumberModel> getRandomNumber();
 }

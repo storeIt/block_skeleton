@@ -1,13 +1,13 @@
-part of 'number_trivia_bloc.dart';
+part of 'number_bloc.dart';
 
-sealed class NumberTriviaEvent extends BaseEvent {
-  NumberTriviaEvent([List props = const []]) : super(props);
+sealed class NumberEvent extends BaseEvent {
+  NumberEvent([List props = const []]) : super(props);
 }
 
-class GetConcreteTriviaEvent extends NumberTriviaEvent {
+class GetConcreteNumberEvent extends NumberEvent {
   final String numberString;
 
-  GetConcreteTriviaEvent(this.numberString) : super([numberString]);
+  GetConcreteNumberEvent(this.numberString);
 }
 
-class GetRandomTriviaEvent extends NumberTriviaEvent {}
+class GetRandomNumberEvent extends NumberEvent {}

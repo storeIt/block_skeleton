@@ -1,31 +1,45 @@
 import 'dart:convert';
-import 'dart:html';
+import 'dart:io';
 
+import 'package:exception/exception.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../../core/exception/exception.dart';
-import '../../model/number_trivia_model.dart';
-import 'number_trivia_remote_data_i.dart';
+import '../../../../../core/constant/api_constant.dart';
+import '../../model/number_model.dart';
+import 'number_remote_data_i.dart';
 
-class NumberTriviaRemoteData implements NumberTriviaRemoteDataI {
+class NumberRemoteData implements NumberRemoteDataI {
   final http.Client client;
 
-  NumberTriviaRemoteData({required this.client});
+  NumberRemoteData({required this.client});
 
   @override
-  Future<NumberTriviaModel> getConcreteNumberTrivia(int number) =>
-      _fetchTrivia('http://numbersapi.com/$number');
+  Future<NumberModel> getConcreteNumber(int number) =>
+      _fetchNumber('${ApiConstant.baseUrl}$number');
 
   @override
-  Future<NumberTriviaModel> getRandomNumberTrivia() =>
-      _fetchTrivia('http://numbersapi.com/random');
+  Future<NumberModel> getRandomNumber() =>
+      _fetchNumber('${ApiConstant.endPointRandom}');
 
-  Future<NumberTriviaModel> _fetchTrivia(String url) async {
-    final response = await client
-        .get(url as Uri, headers: {'Content-Type': 'application/json'});
-    if (response.statusCode == HttpStatus.ok) {
-      return NumberTriviaModel.fromJson(json.decode(response.body));
+  Future<NumberModel> _fetchNumber(String url) async {
+    print('log_tag String url: $url');
+    Uri? uri = Uri.tryParse(url);
+    if (uri == null) {
+      throw ServerFailure(
+        NetworkConstant.requestError,
+        ServerFailure,
+        StackTrace.current,
+      );
     }
-    throw ServerException();
+    final response =
+        await client.get(uri, headers: {'Content-Type': 'application/json'});
+    if (response.statusCode == HttpStatus.ok) {
+      return NumberModel.fromJson(json.decode(response.body));
+    }
+    throw ServerFailure(
+      NetworkConstant.requestError,
+      ServerFailure,
+      StackTrace.current,
+    );
   }
 }

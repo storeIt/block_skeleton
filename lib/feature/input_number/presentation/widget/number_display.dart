@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
 
-class MessageDisplay extends StatelessWidget {
-  const MessageDisplay({required this.message});
+import '../../domain/entity/number_ent.dart';
 
-  final String message;
+class NumberDisplay extends StatelessWidget {
+  const NumberDisplay({required this.numberEntity});
+
+  final NumberEntity numberEntity;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.3,
-      child: Center(
-        child: SingleChildScrollView(
-          child: Text(
-            '$message',
-            style: TextStyle(fontSize: 25),
-            textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            numberEntity.number.toString(),
+            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
           ),
-        ),
+          Expanded(
+            child: Center(
+              child: SingleChildScrollView(
+                child: Text(
+                  '$numberEntity',
+                  style: TextStyle(fontSize: 25),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

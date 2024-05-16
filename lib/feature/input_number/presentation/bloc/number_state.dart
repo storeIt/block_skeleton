@@ -1,3 +1,8 @@
-part of 'number_trivia_bloc.dart';
+part of 'number_bloc.dart';
 
-class NumberTriviaState extends BaseState {}
+sealed class NumberState extends BaseState {
+  NumberState([List props = const []]) : super(props);
+}
+
+// Could be dropped and use App EmptyState instead
+// class EmptyNumberState extends NumberState {}

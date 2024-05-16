@@ -1,15 +1,12 @@
-import '../../core/constant/exception_constant.dart';
-import '../../core/exception/failure.dart';
+import '../../exception.dart';
 
+/**
+ ** Extension for Failure, WIP
+ */
 extension FailureExt on Failure {
-  String failureToMessage() {
-    switch (runtimeType) {
-      case ServerFailure:
-        return ExceptionConstant.serverFailure;
-      case CacheFailure:
-        return ExceptionConstant.cacheFailure;
-      default:
-        return 'Unexpected Error';
-    }
-  }
+  String failureToMessage() => switch (runtimeType) {
+        ServerFailure _ => NetworkConstant.noConnection,
+        UnauthorizedFailure _ => NetworkConstant.unauthorized,
+        _ => NetworkConstant.unknownException,
+      };
 }

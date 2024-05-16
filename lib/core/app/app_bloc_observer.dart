@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-
-import 'util/helper/logger_helper.dart';
+import 'package:util/helper/logger.dart';
 
 class TntBlocObserver extends BlocObserver {
   final LoggerHelper _logger;

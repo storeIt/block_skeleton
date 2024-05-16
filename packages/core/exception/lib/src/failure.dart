@@ -1,20 +1,21 @@
 import 'package:flutter/foundation.dart';
-import 'package:util/helper/logger.dart';
+import 'package:util/util.dart';
 
 import 'exception_constant.dart';
 
-abstract class Failure implements Exception {
+sealed class Failure implements Exception {
   late String message;
   late String failureType;
-  final LoggerHelper _logger = LoggerHelper();
-  final Object error;
+  final LoggerHelper _logger;
+  final Object? error;
   final StackTrace? stackTrace;
 
-  Failure(
-      {required this.message,
-      required this.failureType,
-      required this.error,
-      this.stackTrace}) {
+  Failure({
+    required this.message,
+    required this.failureType,
+    this.error,
+    this.stackTrace,
+  }) : _logger = LoggerHelper() {
     stackTrace ?? StackTrace.current;
     if (kDebugMode) _logError();
   }
@@ -73,6 +74,25 @@ class UnhandledFailure extends Failure {
           message: NetworkConstant.unhandledException,
           failureType: (UnhandledFailure).toString(),
           error: error,
+          stackTrace: stack,
+        );
+}
+
+class CacheFailure extends Failure {
+  CacheFailure(String message, Object error, StackTrace? stack)
+      : super(
+          message: message,
+          failureType: (ServerFailure).toString(),
+          error: error,
+          stackTrace: stack,
+        );
+}
+
+class InvalidInputFailure extends Failure {
+  InvalidInputFailure(String message, StackTrace? stack)
+      : super(
+          message: message,
+          failureType: (ServerFailure).toString(),
           stackTrace: stack,
         );
 }

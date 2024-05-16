@@ -1,9 +1,10 @@
 part of 'base_bloc.dart';
 
 class BaseState extends Equatable {
-  final List<Object?> _props;
+  BaseState([this._props = const []]);
 
-  const BaseState([this._props = const []]);
+  bool isLoading = false;
+  final List<Object?> _props;
 
   @override
   List<Object?> get props => [_props];
