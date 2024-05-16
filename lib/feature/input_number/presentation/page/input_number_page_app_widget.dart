@@ -42,8 +42,11 @@ class InputNumberPageWithAppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _init();
-    return AppWidget(
-      childWidget: _buildBody(context),
+    return Scaffold(
+      appBar: AppBar(title: Text('Input number')),
+      body: AppWidget(
+        childWidget: _buildBody(context),
+      ),
     );
   }
 

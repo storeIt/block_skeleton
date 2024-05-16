@@ -16,39 +16,23 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     _context = context;
 
-    return Scaffold(
-      body: Column(
-        children: [
-          BlocProvider(
-            create: (context) => AppBloc(),
-            child: BlocConsumer<AppBloc, BaseState>(
-              listener: (BuildContext context, BaseState state) {
-                if (state.isLoading) {
-                  print('log_tag 1111111111');
-                  showProgressIndicatorIfNotShowing();
-                } else {
-                  hideProgressIndicator();
-                }
-              },
-              builder: (context, state) {
-                print('log_tag 22222222');
-                return _manageAppState(state);
-              },
-            ),
-          ),
-          childWidget,
-        ],
+    return BlocProvider(
+      create: (context) => AppBloc(),
+      child: BlocConsumer<AppBloc, BaseState>(
+        listener: (BuildContext context, BaseState state) {
+          if (state.isLoading) {
+            print('log_tag 1111111111');
+            showProgressIndicatorIfNotShowing();
+          } else {
+            hideProgressIndicator();
+          }
+        },
+        builder: (context, state) {
+          return childWidget;
+        },
       ),
     );
   }
-
-  Widget _manageAppState(BaseState state) => switch (state) {
-        Loading _ => CircularProgressIndicator(),
-        FailureState _ => Text('Error'),
-        Loaded _ => Text('Loaded'),
-        Empty _ => Text('Empty'),
-        _ => Container(),
-      };
 
   bool showProgressIndicatorIfNotShowing({String? msgKey, String? text}) {
     if (canShowProgressDialog()) {
