@@ -5,7 +5,7 @@ import '../../../core/base/presentation/bloc/app_bloc/app_bloc.dart';
 import '../../../feature/input_number/domain/use_case/concrete_number_use_case.dart';
 import '../../../feature/input_number/domain/use_case/random_number_use_case.dart';
 import '../../../feature/input_number/presentation/bloc/number_bloc.dart';
-import '../../../feature/input_number/presentation/page/input_number_page.dart';
+import '../../../feature/input_number/presentation/page/input_number_page_app_widget.dart';
 import '../../../util/service/service_locator.dart';
 
 class AppView extends StatelessWidget {
@@ -24,7 +24,8 @@ class AppView extends StatelessWidget {
           ),
         ),
       ],
-      child: InputNumberPage(),
+      // child: InputNumberPage(),
+      child: InputNumberPageWithAppWidget(),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:block_skeleton/core/base/presentation/view/app_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -94,7 +93,6 @@ class _InputNumberPageState extends BaseUiState<_InputNumberPage> {
             SizedBox(height: 10),
             BlocConsumer<NumberCubit, BaseState>(
               builder: (context, state) {
-                print('log_tag state: $state');
                 String? message;
                 switch (state) {
                   case Loading():
