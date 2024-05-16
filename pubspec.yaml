@@ -38,6 +38,8 @@ dependencies:
     path: packages/util/util
   exception:
     path: packages/core/exception
+  app_ui:
+    path: packages/presentation/app_ui
 
 dev_dependencies:
   flutter_test:

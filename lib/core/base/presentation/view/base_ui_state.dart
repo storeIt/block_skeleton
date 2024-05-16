@@ -1,7 +1,6 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../../../util/dialog/dialog.dart';
 
 abstract class BaseUiState<T extends StatefulWidget> extends State<T> {
   AlertDialog? progressDialog;

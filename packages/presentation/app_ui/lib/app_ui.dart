@@ -1,4 +1,5 @@
 export 'src/colors/app_colors.dart';
+export 'src/dialog/dialog.dart';
 export 'src/extensions/extensions.dart';
 export 'src/generated/generated.dart';
 export 'src/spacing/app_spacing.dart';

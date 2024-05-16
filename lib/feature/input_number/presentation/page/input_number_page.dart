@@ -1,3 +1,4 @@
+import 'package:block_skeleton/core/base/presentation/view/app_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
