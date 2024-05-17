@@ -16,7 +16,7 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await setupLocator();
     FlutterError.onError = (FlutterErrorDetails details) {
-      Bloc.observer = TntBlocObserver();
+      Bloc.observer = AppBlocObserver();
 
       if (kDebugMode)
         _logger.e(

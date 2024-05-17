@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:util/helper/logger.dart';
 
-class TntBlocObserver extends BlocObserver {
+class AppBlocObserver extends BlocObserver {
   final LoggerHelper _logger;
 
-  TntBlocObserver() : _logger = LoggerHelper();
+  AppBlocObserver() : _logger = LoggerHelper();
 
   @override
   void onEvent(Bloc bloc, Object? event) {

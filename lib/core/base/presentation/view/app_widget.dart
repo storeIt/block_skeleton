@@ -2,10 +2,9 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/app_bloc/app_bloc.dart';
 import '../bloc/base_bloc/base_bloc.dart';
 
-class AppWidget extends StatelessWidget {
+class AppWidget<T extends BlocBase<BaseState>> extends StatelessWidget {
   AppWidget({required this.childWidget, super.key});
 
   final Widget childWidget;
@@ -16,21 +15,19 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     _context = context;
 
-    return BlocProvider(
-      create: (context) => AppBloc(),
-      child: BlocConsumer<AppBloc, BaseState>(
-        listener: (BuildContext context, BaseState state) {
-          if (state.isLoading) {
-            print('log_tag 1111111111');
-            showProgressIndicatorIfNotShowing();
-          } else {
-            hideProgressIndicator();
-          }
-        },
-        builder: (context, state) {
-          return childWidget;
-        },
-      ),
+    return BlocConsumer<T, BaseState>(
+      listener: (BuildContext context, BaseState state) {
+        print('log_tag AppWidget listener: $state');
+        if (state.isLoading) {
+          print('log_tag ${this.runtimeType} listener isLoading: true');
+          showProgressIndicatorIfNotShowing();
+        } else {
+          hideProgressIndicator();
+        }
+      },
+      builder: (context, state) {
+        return childWidget;
+      },
     );
   }
 

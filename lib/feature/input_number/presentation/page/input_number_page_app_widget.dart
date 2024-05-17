@@ -44,45 +44,45 @@ class InputNumberPageWithAppWidget extends StatelessWidget {
     _init();
     return Scaffold(
       appBar: AppBar(title: Text('Input number')),
-      body: AppWidget(
-        childWidget: _buildBody(context),
+      body: BlocProvider(
+        create: (context) => NumberCubit(
+          concreteNumberUseCase: sl<ConcreteNumberUseCase>(),
+          randomNumberUseCase: sl<RandomNumberUseCase>(),
+        ),
+        child: AppWidget<NumberCubit>(
+          childWidget: _buildBody(context),
+        ),
       ),
     );
   }
 
   Widget _buildBody(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NumberCubit(
-        concreteNumberUseCase: sl<ConcreteNumberUseCase>(),
-        randomNumberUseCase: sl<RandomNumberUseCase>(),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            BlocBuilder<NumberCubit, BaseState>(builder: (context, state) {
-              print('log_tag state: $state');
-              String? message;
-              switch (state) {
-                case Loading():
-                  message = 'Loading...';
-                case Loaded():
-                  print('log_tag LoadedState');
-                  message = (state.data as NumberEntity).text;
-                  break;
-                case FailureState():
-                  message = state.message;
-                  break;
-                default:
-                  message = 'Start searching';
-              }
-              return MessageDisplay(message: message);
-            }),
-            SizedBox(height: 20),
-            NumberControls(),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          SizedBox(height: 10),
+          BlocBuilder<NumberCubit, BaseState>(builder: (context, state) {
+            print('log_tag state: $state');
+            String? message;
+            switch (state) {
+              case Loading():
+                message = 'Loading...';
+              case Loaded():
+                print('log_tag LoadedState');
+                message = (state.data as NumberEntity).text;
+                break;
+              case FailureState():
+                message = state.message;
+                break;
+              default:
+                message = 'Start searching';
+            }
+            return MessageDisplay(message: message);
+          }),
+          SizedBox(height: 20),
+          NumberControls(),
+        ],
       ),
     );
   }
