@@ -4,6 +4,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/base_bloc/base_bloc.dart';
 
+/**
+ ** [AppWidget] is the glue between the app logic and the feature business logic.
+ ** It wraps the child widget with a BlocConsumer and handles app state changes.
+ ** AppWidget is a generic class that takes a BlocBase as a type parameter.
+ ** Bloc and Cubit are subclasses of BlocBase so whatever the state management
+ ** class is, it can be used with the AppWidget.
+ ** It listens to the app states (Loading, Loaded, Dialog, Failure) and shows an
+ ** appropriate widget based on the state - loading indicator, dialog, error message, etc.
+ ** The [childWidget] is the widget that will be wrapped by the BlocConsumer's builder.
+ ** It is the main widget of the feature that will be displayed on the screen and
+ ** will be built based on the app or feature state changes.
+ *
+ ** The AppWidget will have common to all features methods like show and hide a
+ ** progress indicator or shimmer effect, show a dialog, snackbar, etc.
+ ** At the same time, the wrapped child widget will have its own specific methods
+ ** to handle the same as the app state changes.
+ *
+ ** Example:
+ ** when we have a Loading state, which is part of the app states, the AppWidget
+ ** will show a loading indicator, but the child widget will have a method to
+ ** change a Text widget according to the business logic related to the feature
+ ** for the same Loading state.
+ *
+ ** In short AppWidget is the common part of the app which provides easy way to
+ ** handle app states and show appropriate widgets based on the app state changes
+ ** and a convenient way to test the app.
+ **/
 class AppWidget<T extends BlocBase<BaseState>> extends StatelessWidget {
   AppWidget({required this.childWidget, super.key});
 
