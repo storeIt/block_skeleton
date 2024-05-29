@@ -1,8 +1,8 @@
+import 'package:app_ui/app_ui.dart';
+import 'package:block_skeleton/core/base/presentation/bloc/app_bloc/app_bloc.dart';
 import 'package:block_skeleton/feature/input_number/presentation/cubit/number_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/number_bloc.dart';
 
 class NumberControls extends StatefulWidget {
   const NumberControls({
@@ -53,8 +53,18 @@ class _NumberControlsState extends State<NumberControls> {
   }
 
   void dispatchConcrete() {
-    print('log_tag dispatchConcrete: $inputStr');
     // BlocProvider.of<NumberBloc>(context).add(GetConcreteNumberEvent(inputStr!));
+    // BlocProvider.of<NumberCubit>(context).getConcreteNumber(inputStr!);
+    print('log_tag ${this.runtimeType} add DialogEvent');
+    context.read<AppBloc>().add(
+          DialogEvent(
+            type: DialogType.common,
+            args: DialogArgsCommon(
+              title: 'Test Args title',
+              message: 'Test Args, do you approve?',
+            ),
+          ),
+        );
     BlocProvider.of<NumberCubit>(context).getConcreteNumber(inputStr!);
   }
 }

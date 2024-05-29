@@ -22,7 +22,6 @@ class NumberRemoteData implements NumberRemoteDataI {
       _fetchNumber('${ApiConstant.endPointRandom}');
 
   Future<NumberModel> _fetchNumber(String url) async {
-    print('log_tag String url: $url');
     Uri? uri = Uri.tryParse(url);
     if (uri == null) {
       throw ServerFailure(

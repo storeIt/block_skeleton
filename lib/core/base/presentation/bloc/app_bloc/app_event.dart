@@ -12,8 +12,17 @@ class LoadedEvent extends AppEvent {
   final dynamic data;
 }
 
-class FailureEvent extends AppEvent {
-  final String message;
+class IdleEvent extends AppEvent {}
 
+class FailureEvent extends AppEvent {
   FailureEvent(this.message) : super([message]);
+
+  final String message;
+}
+
+class DialogEvent extends AppEvent {
+  DialogEvent({required this.type, required this.args}) : super([type, args]);
+
+  final DialogType type;
+  final DialogArgsI args;
 }

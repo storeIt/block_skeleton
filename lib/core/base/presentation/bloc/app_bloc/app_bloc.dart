@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../base_bloc/base_bloc.dart';
@@ -10,6 +11,7 @@ class AppBloc extends BaseBloc {
     on<LoadingEvent>(_onLoading);
     on<LoadedEvent>(_onLoaded);
     on<FailureEvent>(_onFailure);
+    on<DialogEvent>(_onDialog);
   }
 
   bool get isLoading => state is Loading;
@@ -17,6 +19,8 @@ class AppBloc extends BaseBloc {
   bool get isLoaded => state is Loaded;
 
   bool get isFailure => state is FailureState;
+
+  bool get isDialog => state is DialogState;
 
   BaseState getState() => state;
 
@@ -30,5 +34,20 @@ class AppBloc extends BaseBloc {
 
   void _onFailure(FailureEvent event, Emitter<BaseState> emit) {
     emit(FailureState(event.message));
+  }
+
+  void _onDialog(DialogEvent event, Emitter<BaseState> emit) {
+    final dialog = switch (event.type) {
+      DialogType.common => DialogCommon(event.args as DialogArgsCommon),
+      // DialogType.info => DialogInfo(args),
+      // DialogType.confirmation => DialogConfirmation(args),
+      // DialogType.error => DialogError(args),
+    };
+    final dialogState = DialogState(
+      dialog: dialog,
+      type: event.type,
+      args: event.args,
+    );
+    emit(dialogState);
   }
 }

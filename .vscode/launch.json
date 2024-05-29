@@ -1,0 +1,123 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart"
+        },
+        {
+            "type": "java",
+            "name": "Launch External Terminal",
+            "request": "launch",
+            "console": "externalTerminal",
+            "mainClass": ""
+        },
+        {
+            "name": "Flutter: Attach to Device",
+            "type": "dart",
+            "request": "attach"
+        },
+        {
+            "name": "block_skeleton",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "block_skeleton (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "block_skeleton (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "exception",
+            "cwd": "packages/core/exception",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "exception (profile mode)",
+            "cwd": "packages/core/exception",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "exception (release mode)",
+            "cwd": "packages/core/exception",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "app_ui",
+            "cwd": "packages/presentation/app_ui",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app_ui (profile mode)",
+            "cwd": "packages/presentation/app_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "app_ui (release mode)",
+            "cwd": "packages/presentation/app_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "util",
+            "cwd": "packages/util/util",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "util (profile mode)",
+            "cwd": "packages/util/util",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "util (release mode)",
+            "cwd": "packages/util/util",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "gallery",
+            "cwd": "packages/presentation/app_ui/gallery",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "gallery (profile mode)",
+            "cwd": "packages/presentation/app_ui/gallery",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "gallery (release mode)",
+            "cwd": "packages/presentation/app_ui/gallery",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

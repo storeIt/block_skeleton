@@ -21,8 +21,25 @@ class NumberCubit extends Cubit<BaseState> {
     required this.randomNumberUseCase,
   }) : super(Empty());
 
+  // Future<void> getConcreteNumber(String numberString) async {
+  //   emit(Loading());
+  //   final Either<Failure, int> inputEither =
+  //       InputConverter().stringToUnsignedInt(numberString);
+  //
+  //   await inputEither.fold(
+  //     (l) async {
+  //       emit(FailureState('Invalid input'));
+  //     },
+  //     (integer) async {
+  //       final either =
+  //           await concreteNumberUseCase(params: Params(params: integer));
+  //       emit(await _eitherLoadedOrErrorState(either));
+  //     },
+  //   );
+  // }
+
   Future<void> getConcreteNumber(String numberString) async {
-    emit(Loading());
+    // emit(Loading());
     final Either<Failure, int> inputEither =
         InputConverter().stringToUnsignedInt(numberString);
 

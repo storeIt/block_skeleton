@@ -98,7 +98,6 @@ class _InputNumberPageState extends BaseUiState<_InputNumberPage> {
                   case Loading():
                     message = 'Loading...';
                   case Loaded():
-                    print('log_tag LoadedState');
                     message = (state.data as NumberEntity).text;
                     break;
                   case FailureState():

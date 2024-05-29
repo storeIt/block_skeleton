@@ -50,7 +50,8 @@ class InputNumberPageWithAppWidget extends StatelessWidget {
           concreteNumberUseCase: sl<ConcreteNumberUseCase>(),
           randomNumberUseCase: sl<RandomNumberUseCase>(),
         ),
-        child: AppWidget<NumberCubit>(
+        // child: AppWidget<NumberCubit>(
+        child: AppLayerWidget<AppBloc>(
           childWidget: _buildBody(context),
         ),
       ),
@@ -64,7 +65,6 @@ class InputNumberPageWithAppWidget extends StatelessWidget {
         children: [
           SizedBox(height: 10),
           BlocBuilder<NumberCubit, BaseState>(builder: (context, state) {
-            print('log_tag state: $state');
             String? message;
             switch (state) {
               case Loading():

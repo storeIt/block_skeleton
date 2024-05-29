@@ -23,7 +23,6 @@ class Loading extends AppState {
 
 class Loaded extends AppState {
   Loaded(this.data) : super([data]) {
-    print('log_tag data: $data');
     isLoading = false;
   }
 
@@ -36,4 +35,32 @@ class FailureState extends AppState {
   }
 
   final String message;
+}
+
+class DialogState extends AppState {
+  DialogState({
+    required this.type,
+    required this.args,
+    this.dialog,
+  }) : super([
+          type,
+          args,
+          dialog,
+        ]);
+
+  late final AppDialogI? dialog;
+  late final DialogType type;
+  late final DialogArgsI args;
+
+  DialogState copyWith({
+    AppDialogI? dialog,
+    DialogType? type,
+    DialogArgsI? args,
+  }) {
+    return DialogState(
+      type: type ?? this.type,
+      args: args ?? this.args,
+      dialog: dialog ?? this.dialog,
+    );
+  }
 }
